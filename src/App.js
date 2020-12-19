@@ -19,6 +19,7 @@ function App() {
   return ( 
     <>
       <Canvas>
+        <ambientLight intensity={ .3 }/>
         <Box />
       </Canvas> 
     </> 
