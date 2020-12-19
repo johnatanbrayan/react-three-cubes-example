@@ -1,4 +1,4 @@
-import './App.scss';
+import './style-threejs.scss';
 import React , { useRef, useState } from 'react';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { MeshWobbleMaterial, OrbitControls, softShadows } from 'drei';
@@ -8,12 +8,9 @@ softShadows();
 
 const SpinninMesh = ( { position, args, color, speed } ) => {
   const mesh = useRef( null );
-  useFrame( () => ( mesh.current.rotation.x = mesh.current.rotation.y += 0.01 ) );
-
   const [ expand, setExpand ] = useState( false );
-  const props = useSpring({
-    scale: expand ? [ 1.4, 1.4, 1.4 ] : [ 1, 1, 1 ],
-  });
+  const props = useSpring({ scale: expand ? [ 1.4, 1.4, 1.4 ] : [ 1, 1, 1 ] });
+  useFrame( () => ( mesh.current.rotation.x = mesh.current.rotation.y += 0.01 ) );
 
   return (
     <a.mesh onClick={ () => setExpand(!expand) } scale={ props.scale } castShadow position={ position } ref={ mesh }>
